@@ -3,106 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#fbf8ff">
+<meta name="theme-color" content="#fff8fd">
 <title>Lớp học Sứa Taho</title>
 <style>
-*{box-sizing:border-box}
-:root{--ink:#3c314b;--muted:#8f8598;--line:rgba(119,91,150,.12);--violet:#8a72e8;--pink:#ee76b8;--cyan:#70d3ee}
-html{scroll-behavior:smooth}
-body{margin:0;color:var(--ink);background:#fffdfd;font-family:Inter,ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{font:inherit}button{cursor:pointer}
-.topbar{height:72px;position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:0 max(18px,5vw);background:rgba(255,255,255,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900}
-.brand img{width:44px;height:44px;object-fit:contain}
-.brand small{display:block;margin-top:2px;font-size:10px;color:#a195a9;font-weight:700}
-.login{display:flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;border:1px solid var(--line);border-radius:17px;background:#fff;color:#715f7e;font-weight:850;box-shadow:0 8px 20px rgba(58,43,77,.05)}
-.loginIcon{width:36px;height:36px;background-image:url('/images/icon-sprite.webp');background-size:100% 500%;background-position:0 100%;background-repeat:no-repeat}
-.hero{position:relative;overflow:hidden;padding:32px 16px 68px;background:radial-gradient(circle at 12% 25%,rgba(255,218,238,.55),transparent 28%),radial-gradient(circle at 87% 25%,rgba(207,241,255,.66),transparent 30%),linear-gradient(180deg,#fffaff,#f8f6ff 55%,#f5fcff)}
-.hero:after{content:"";position:absolute;inset:0;opacity:.28;background-image:radial-gradient(rgba(126,101,177,.18) 1px,transparent 1px);background-size:27px 27px;mask-image:linear-gradient(#000,transparent 88%)}
-.heroInner{position:relative;z-index:2;max-width:1120px;margin:auto;text-align:center}
-.banner{display:block;width:min(1020px,95vw);margin:0 auto 7px;filter:drop-shadow(0 12px 24px rgba(100,74,134,.11))}
-.heroText{max-width:650px;margin:0 auto 18px;color:#82768b;font-size:13.5px;line-height:1.65}
-.search{width:min(690px,94%);height:58px;margin:0 auto 18px;display:flex;align-items:center;gap:11px;padding:0 17px;border:1px solid rgba(130,102,163,.13);border-radius:19px;background:rgba(255,255,255,.97);box-shadow:0 15px 38px rgba(71,53,95,.08)}
-.search svg{width:22px;flex:0 0 auto;color:#9b7cc2}
-.search input{width:100%;border:0;outline:0;background:transparent;color:#463650;font-size:15px}
-.menu{width:min(660px,96%);margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.menu button{min-height:104px;border:1px solid rgba(140,112,175,.11);border-radius:21px;background:rgba(255,255,255,.76);color:#71627b;font-weight:900;box-shadow:0 8px 22px rgba(63,47,83,.045);transition:.22s}
-.menu button:hover{transform:translateY(-4px);background:#fff;box-shadow:0 14px 28px rgba(63,47,83,.08)}
-.menu button.active{background:linear-gradient(145deg,#f5efff,#fff2f8);border-color:rgba(140,112,175,.22)}
-.menuIcon{width:62px;height:62px;margin:0 auto 2px;background-image:url('/images/icon-sprite.webp');background-repeat:no-repeat;background-size:100% 500%;background-position-x:0;filter:drop-shadow(0 6px 10px rgba(84,64,110,.08))}
-.homeIcon{background-position-y:0}.gamesIcon{background-position-y:25%}.mathIcon{background-position-y:50%}.vietIcon{background-position-y:75%}
-.menu span{display:block;font-size:11px}
-.content{max-width:1120px;margin:auto;padding:52px max(18px,5vw) 90px}
-.content[hidden]{display:none}
-.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
-.eyebrow{font-size:11px;letter-spacing:2px;color:#9a75c4;font-weight:950}
-h2{margin:7px 0 5px;font-size:31px;letter-spacing:-.7px}
-.sectionHead p{margin:0;color:var(--muted);font-size:13.5px}
-.count{padding:9px 12px;border:1px solid var(--line);border-radius:999px;color:#94899d;background:#fff;font-size:12px}
-.gameCard{width:min(365px,100%);overflow:hidden;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:0 18px 42px rgba(62,47,81,.09);transition:.24s}
-.gameCard:hover{transform:translateY(-6px);box-shadow:0 25px 52px rgba(62,47,81,.13)}
-.coverBox{padding:10px;background:linear-gradient(145deg,#f7fbff,#fff6fb)}
-.cover{width:100%;aspect-ratio:1;display:block;object-fit:cover;border-radius:20px}
-.cardFoot{padding:13px 15px 16px}
-.meta{display:flex;justify-content:center;gap:8px;color:#978c9f;font-size:11px;margin-bottom:11px}
-.meta i{width:3px;height:3px;border-radius:50%;align-self:center;background:#c6b7d2}
-.play{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;border:0;border-radius:16px;color:#fff;background:linear-gradient(95deg,var(--cyan),var(--violet) 48%,var(--pink));font-weight:950;letter-spacing:.25px;text-decoration:none;box-shadow:0 10px 22px rgba(140,105,202,.2)}
-.play svg{width:18px}
-.empty{display:none;text-align:center;padding:55px 0;color:#988da1}.empty.show{display:block}
-.homeIntro{max-width:810px;margin:36px auto 90px;padding:22px 25px;border:1px solid rgba(140,112,175,.09);border-radius:25px;background:linear-gradient(135deg,#f0fbff,#f7f3ff 52%,#fff3f8);text-align:center}
-.homeIntro h3{margin:0 0 7px;font-size:22px}.homeIntro p{margin:0;color:#7d7287;line-height:1.6;font-size:13px}
-.footer{padding:18px max(18px,5vw);border-top:1px solid var(--line);color:#9b90a2;background:#fff;font-size:12px}
-.assistant{position:fixed;right:16px;bottom:12px;z-index:75}
-.jellyBtn{width:116px;height:116px;border:0;background:transparent;padding:0;animation:float 3.2s ease-in-out infinite}
-.jellyBtn img{width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 12px 20px rgba(86,63,116,.18));transition:.2s}
-.jellyBtn:hover img{transform:scale(1.08) rotate(-4deg)}
-.tip{position:absolute;right:98px;bottom:70px;white-space:nowrap;padding:9px 12px;border-radius:14px 14px 4px 14px;background:#fff;color:#6d5f76;font-size:12px;box-shadow:0 10px 26px rgba(53,39,70,.14)}
-.chat{display:none;position:absolute;right:4px;bottom:126px;width:min(340px,calc(100vw - 34px));overflow:hidden;border:1px solid var(--line);border-radius:23px;background:#fff;box-shadow:0 28px 70px rgba(47,34,65,.24)}
-.chat.open{display:block}
-.chatHead{display:flex;align-items:center;gap:9px;padding:13px;background:linear-gradient(100deg,#effaff,#fff2f8)}
-.chatHead img{width:42px;height:42px;object-fit:contain}.chatHead strong{flex:1}.chatHead button{width:31px;height:31px;border:0;border-radius:50%;background:#fff}
-.chatBody{padding:15px;color:#66596e;font-size:13px;line-height:1.55}
-.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.actions button{border:1px solid var(--line);border-radius:11px;background:#fff;padding:8px 10px;color:#735f80}
-.modal{display:none;position:fixed;inset:0;z-index:90;place-items:center;padding:18px;background:rgba(42,30,56,.32);backdrop-filter:blur(8px)}
-.modal.open{display:grid}.modalBox{width:min(390px,100%);padding:24px;border-radius:24px;background:#fff;box-shadow:0 28px 70px rgba(48,34,65,.22);text-align:center}.modalBox .close{float:right;width:33px;height:33px;border:0;border-radius:50%;background:#f5f0f8}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@media(max-width:640px){.topbar{height:66px;padding:0 13px}.brand small{display:none}.brand img{width:40px;height:40px}.login{padding-right:8px}.login>span{display:none}.hero{padding:22px 8px 60px}.banner{width:99vw}.heroText{font-size:12px;padding:0 12px}.menu{gap:5px}.menu button{min-height:84px;padding:4px;border-radius:17px}.menuIcon{width:48px;height:48px}.menu span{font-size:9.5px}.assistant{right:5px;bottom:5px}.jellyBtn{width:96px;height:96px}.jellyBtn img{width:92px;height:92px}.tip{right:78px;bottom:61px}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#51425d;background:#fffdfd}button,input,select{font:inherit}button{cursor:pointer}[hidden]{display:none!important}
+:root{--line:#eee3f2;--muted:#8d8097;--ink:#51425d}
+.topbar{height:76px;padding:0 clamp(18px,5vw,72px);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);border-bottom:1px solid #f1e8f4;backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:11px}.brand img{width:48px;height:48px;object-fit:contain}.brand strong{display:block;font-size:18px}.brand small{display:block;margin-top:3px;color:#a397aa;font-size:10px;font-weight:700}
+.loginBtn{display:flex;align-items:center;gap:8px;padding:7px 13px 7px 8px;border:1px solid var(--line);border-radius:17px;background:#fff;color:#715f7e;font-weight:900;box-shadow:0 8px 22px rgba(73,48,92,.06)}
+.loginIcon{width:34px;height:34px;background:url('/images/icon-sprite.webp') center 100%/100% 500% no-repeat}
+.hero{position:relative;overflow:hidden;padding:38px 16px 68px;background:radial-gradient(circle at 8% 25%,rgba(255,221,239,.62),transparent 29%),radial-gradient(circle at 92% 32%,rgba(210,244,255,.75),transparent 30%),linear-gradient(135deg,#fff6fb 0%,#f6f1ff 50%,#effaff 100%)}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(129,105,176,.12) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(#000 20%,transparent 90%)}
+.heroInner{position:relative;z-index:2;max-width:1120px;margin:auto;text-align:center}.banner{display:block;width:min(980px,94vw);margin:0 auto 8px;filter:drop-shadow(0 16px 30px rgba(91,65,123,.14))}.intro{max-width:650px;margin:0 auto 20px;color:#83768d;font-size:14px;line-height:1.6}
+.search{width:min(710px,94vw);height:60px;margin:0 auto 18px;display:flex;align-items:center;gap:11px;padding:0 18px;border:1px solid rgba(137,108,170,.14);border-radius:20px;background:#fff;box-shadow:0 14px 36px rgba(72,52,94,.08)}.search span{font-size:24px;color:#a98bc2}.search input{width:100%;border:0;outline:0;background:transparent;color:#54445e;font-size:15px}
+.nav{width:min(690px,96vw);margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.nav button{min-height:112px;border:1px solid rgba(137,108,170,.14);border-radius:22px;background:rgba(255,255,255,.76);color:#715f7c;font-weight:900;box-shadow:0 10px 25px rgba(73,48,92,.055);transition:.2s}.nav button:hover{transform:translateY(-4px);background:#fff}.nav button.active{background:linear-gradient(145deg,#f7efff,#fff4f9);border-color:#dcc8e9}.icon{width:64px;height:64px;margin:0 auto 4px;background-image:url('/images/icon-sprite.webp');background-repeat:no-repeat;background-size:100% 500%;background-position-x:center;filter:drop-shadow(0 7px 10px rgba(82,61,107,.1))}.i-home{background-position-y:0}.i-games{background-position-y:25%}.i-math{background-position-y:50%}.i-viet{background-position-y:75%}.nav label{display:block;font-size:12px}
+.content{max-width:1080px;margin:auto;padding:48px 6% 110px}.sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:25px}.eyebrow{font-size:10px;letter-spacing:.16em;color:#a184b1;font-weight:950}.sectionHead h2{margin:7px 0 4px;font-size:34px}.sectionHead p{margin:0;color:var(--muted)}.adminBtn{min-height:44px;padding:0 14px;border:1px solid #dcc9e7;border-radius:15px;background:#fff;color:#755f80;font-weight:900}.empty{text-align:center;padding:30px 20px}.empty img{width:170px;animation:float 3.2s ease-in-out infinite}.empty h3{margin:8px 0 5px;font-size:24px}.empty p{margin:0;color:var(--muted)}
+.assistant{position:fixed;right:18px;bottom:12px;z-index:60}.jelly{width:118px;height:118px;padding:0;border:0;background:transparent;animation:float 3s ease-in-out infinite}.jelly img{width:116px;height:116px;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(82,61,108,.2));transition:.2s}.jelly:hover img{transform:scale(1.08) rotate(-4deg)}.tip{position:absolute;right:95px;bottom:73px;padding:9px 12px;border-radius:15px 15px 4px 15px;background:#fff;border:1px solid var(--line);color:#78697f;font-size:11px;white-space:nowrap;box-shadow:0 8px 24px rgba(70,48,88,.12);opacity:0;transform:translateY(6px);transition:.2s}.assistant:hover .tip{opacity:1;transform:translateY(0)}
+.modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:18px;background:rgba(48,35,65,.36);backdrop-filter:blur(7px)}.modal.open{display:grid}.modalCard{width:min(470px,100%);padding:25px;border-radius:27px;background:#fff;box-shadow:0 32px 90px rgba(48,35,65,.27);position:relative}.close{position:absolute;right:15px;top:14px;width:35px;height:35px;border:0;border-radius:50%;background:#f5eff8;color:#7d7085;font-size:21px}.modalTitle{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-right:42px}.modalTitle .loginIcon{width:54px;height:54px}.modalTitle h2{margin:3px 0 0;font-size:22px}.form{display:grid;gap:13px}.form label{display:grid;gap:6px}.form label span{font-size:12px;font-weight:850;color:#74657d}.form input{min-height:45px;border:1px solid #e5dbe9;border-radius:13px;padding:0 12px;outline:none}.form input:focus{border-color:#bda6d0;box-shadow:0 0 0 3px #f1e8f8}.note{padding:11px 12px;border-radius:13px;background:#faf6fb;color:#8a7d92;font-size:11px;line-height:1.55}.submit{height:48px;border:0;border-radius:15px;color:#fff;font-weight:900;background:linear-gradient(100deg,#6ccdeb,#9179ef 52%,#ec76ba)}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+@media(max-width:720px){.topbar{height:68px;padding:0 12px}.brand img{width:42px;height:42px}.brand small{display:none}.brand strong{font-size:15px}.loginBtn span{display:none}.loginBtn{padding:5px}.hero{padding:24px 7px 56px}.banner{width:99%}.intro{font-size:12px;padding:0 12px}.nav{gap:6px}.nav button{min-height:88px;padding:4px;border-radius:17px}.icon{width:50px;height:50px}.nav label{font-size:9.5px}.content{padding:30px 14px 95px}.assistant{right:5px;bottom:5px}.jelly{width:96px;height:96px}.jelly img{width:93px;height:93px}.tip{right:78px;bottom:62px}}
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="brand"><img src="/images/jelly.webp" alt="Sứa Taho"><div>Lớp học Sứa Taho<small>Học vui • Chơi thông minh</small></div></div>
-  <button class="login" id="loginBtn"><div class="loginIcon"></div><span>Đăng nhập</span></button>
-</header>
-<section class="hero"><div class="heroInner">
-  <img class="banner" src="/images/title-hq.webp" alt="Học cùng Sứa Taho">
-  <p class="heroText">Kho trò chơi học tập dành cho lớp học. Giáo viên mở game, học sinh tham gia trực tiếp trên trình duyệt.</p>
-  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 16l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><input id="searchInput" placeholder="Tìm tên game hoặc môn học..."></div>
-  <nav class="menu">
-    <button class="active" data-view="home"><div class="menuIcon homeIcon"></div><span>Trang chủ</span></button>
-    <button data-view="games"><div class="menuIcon gamesIcon"></div><span>Kho game</span></button>
-    <button data-view="math"><div class="menuIcon mathIcon"></div><span>Toán</span></button>
-    <button data-view="viet"><div class="menuIcon vietIcon"></div><span>Tiếng Việt</span></button>
-  </nav>
-</div></section>
-<main class="content" id="gameSection" hidden>
-  <div class="sectionHead"><div><div class="eyebrow">KHO TRÒ CHƠI</div><h2 id="sectionTitle">Kho game</h2><p id="sectionSubtitle">Các trò chơi của Lớp học Sứa Taho.</p></div><div class="count" id="count">1 game</div></div>
-  <article class="gameCard" id="gameCard"><div class="coverBox"><img class="cover" src="/images/game-hq.webp" alt="Sắc màu của em"></div><div class="cardFoot"><div class="meta"><span>Vẽ sáng tạo</span><i></i><span>Dùng cho lớp học</span></div><a class="play" href="/games/sac-mau"><svg viewBox="0 0 24 24"><path d="M8 6.7v10.6c0 .8.9 1.3 1.6.9l8.1-5.3c.6-.4.6-1.3 0-1.7L9.6 5.8C8.9 5.4 8 5.9 8 6.7Z" fill="currentColor"/></svg>CHƠI NGAY</a></div></article>
-  <div class="empty" id="empty">Sứa Taho chưa có trò chơi trong mục này.</div>
-</main>
-<section class="homeIntro" id="homeIntro"><h3>Học qua trò chơi, mỗi ngày một niềm vui.</h3><p>Chọn Kho game để bắt đầu. Với “Sắc màu của em”, học sinh quét QR, vẽ trên thiết bị và gửi tranh lên màn hình TV.</p></section>
-<footer class="footer">Lớp học Sứa Taho</footer>
-<div class="assistant"><div class="chat" id="chat"><div class="chatHead"><img src="/images/jelly.webp" alt=""><strong>Sứa Taho</strong><button id="closeChat">×</button></div><div class="chatBody">Xin chào! Bạn muốn tìm game nào?<div class="actions"><button data-go="games">Kho game</button><button data-go="math">Game Toán</button><button data-go="viet">Tiếng Việt</button></div></div></div><div class="tip" id="tip">Hỏi Sứa Taho nhé!</div><button class="jellyBtn" id="jellyBtn"><img src="/images/jelly.webp" alt="Sứa Taho"></button></div>
-<div class="modal" id="modal"><div class="modalBox"><button class="close" id="closeModal">×</button><h2>Đăng nhập học sinh</h2><p style="color:#877b90;line-height:1.6;font-size:13px">Phần tài khoản sẽ được kết nối ở bước sau. Hiện tại có thể chơi game mà không cần đăng nhập.</p></div></div>
+<header class="topbar"><div class="brand"><img src="/images/jelly.webp" alt=""><div><strong>Lớp học Sứa Taho</strong><small>Học vui • Chơi thông minh</small></div></div><button class="loginBtn" id="loginBtn"><div class="loginIcon"></div><span id="loginText">Đăng nhập</span></button></header>
+<section class="hero"><div class="heroInner"><img class="banner" src="/images/title-hq.webp" alt="Học cùng Sứa Taho"><p class="intro">Kho trò chơi học tập dành cho lớp học. Chọn môn hoặc vào Kho game để bắt đầu.</p><div class="search"><span>⌕</span><input id="searchInput" placeholder="Tìm tên game..."></div><nav class="nav"><button class="active" data-view="home"><div class="icon i-home"></div><label>Trang chủ</label></button><button data-view="games"><div class="icon i-games"></div><label>Kho game</label></button><button data-view="math"><div class="icon i-math"></div><label>Toán</label></button><button data-view="viet"><div class="icon i-viet"></div><label>Tiếng Việt</label></button></nav></div></section>
+<main class="content" id="library" hidden><div class="sectionHead"><div><div class="eyebrow" id="eyebrow">KHO GAME</div><h2 id="title">Kho game</h2><p id="desc">Các trò chơi mới sẽ được cập nhật tại đây.</p></div><button class="adminBtn admin-only" id="addGame" hidden>＋ Thêm game</button></div><div class="empty"><img src="/images/jelly.webp" alt=""><h3>Kho game đang trống</h3><p>Các trò chơi mới sẽ được cập nhật tại đây.</p></div></main>
+<div class="assistant"><div class="tip">Sứa Taho ở đây nè!</div><button class="jelly" id="jelly"><img src="/images/jelly.webp" alt="Sứa Taho"></button></div>
+<div class="modal" id="loginModal"><div class="modalCard"><button class="close" id="closeLogin">×</button><div class="modalTitle"><div class="loginIcon"></div><div><div class="eyebrow">HỌC SINH</div><h2>Đăng nhập vào Lớp học Sứa Taho</h2></div></div><form class="form" id="loginForm"><label><span>Họ và tên *</span><input id="studentName" required placeholder="Ví dụ: Nguyễn Minh Anh"></label><label><span>Lớp *</span><input id="studentClass" required placeholder="Ví dụ: 3/2"></label><label><span>Mã học sinh / Số thứ tự</span><input id="studentCode" placeholder="Có thể để trống"></label><div class="note">Website không yêu cầu mật khẩu. Thông tin chỉ dùng để nhận diện học sinh trên thiết bị này.</div><button class="submit" type="submit">Đăng nhập</button></form></div></div>
 <script>
-const buttons=[...document.querySelectorAll('.menu button')];
-const section=document.getElementById('gameSection'),intro=document.getElementById('homeIntro'),card=document.getElementById('gameCard'),empty=document.getElementById('empty'),title=document.getElementById('sectionTitle'),subtitle=document.getElementById('sectionSubtitle'),count=document.getElementById('count'),search=document.getElementById('searchInput');
-function show(view,scroll=true){buttons.forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view==='home'){section.hidden=true;intro.hidden=false;search.value='';if(scroll)window.scrollTo({top:0,behavior:'smooth'});return}section.hidden=false;intro.hidden=true;const has=view==='games';card.style.display=has?'block':'none';empty.classList.toggle('show',!has);count.textContent=has?'1 game':'0 game';title.textContent=view==='math'?'Game Toán':view==='viet'?'Game Tiếng Việt':'Kho game';subtitle.textContent=has?'Các trò chơi của Lớp học Sứa Taho.':'Chưa có game trong mục này.';if(scroll)section.scrollIntoView({behavior:'smooth',block:'start'});}
-buttons.forEach(b=>b.onclick=()=>show(b.dataset.view));
-search.oninput=()=>{show('games',false);const ok=!search.value||'sắc màu của em ve sang tao'.includes(search.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''));card.style.display=ok?'block':'none';empty.classList.toggle('show',!ok);count.textContent=ok?'1 game':'0 game'};
-loginBtn.onclick=()=>modal.classList.add('open');closeModal.onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
-jellyBtn.onclick=()=>{chat.classList.toggle('open');tip.style.display=chat.classList.contains('open')?'none':'block'};closeChat.onclick=()=>{chat.classList.remove('open');tip.style.display='block'};
-document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{show(b.dataset.go);chat.classList.remove('open');tip.style.display='block'});
+const nav=[...document.querySelectorAll('.nav button')],library=document.getElementById('library'),title=document.getElementById('title'),eyebrow=document.getElementById('eyebrow'),desc=document.getElementById('desc');
+function show(v){nav.forEach(b=>b.classList.toggle('active',b.dataset.view===v));if(v==='home'){library.hidden=true;window.scrollTo({top:0,behavior:'smooth'});return}library.hidden=false;if(v==='math'){eyebrow.textContent='MÔN TOÁN';title.textContent='Game Toán';desc.textContent='Các trò chơi môn Toán sẽ được cập nhật tại đây.'}else if(v==='viet'){eyebrow.textContent='MÔN TIẾNG VIỆT';title.textContent='Game Tiếng Việt';desc.textContent='Các trò chơi môn Tiếng Việt sẽ được cập nhật tại đây.'}else{eyebrow.textContent='KHO GAME';title.textContent='Kho game';desc.textContent='Các trò chơi mới sẽ được cập nhật tại đây.'}library.scrollIntoView({behavior:'smooth',block:'start'})}
+nav.forEach(b=>b.onclick=()=>show(b.dataset.view));document.getElementById('searchInput').oninput=()=>show('games');
+const isAdmin=location.hash==='#admin';document.querySelectorAll('.admin-only').forEach(el=>el.hidden=!isAdmin);
+const modal=document.getElementById('loginModal'),loginBtn=document.getElementById('loginBtn'),loginText=document.getElementById('loginText'),form=document.getElementById('loginForm');
+function refreshLogin(){const s=JSON.parse(localStorage.getItem('sua-taho-current-student-v1')||'null');loginText.textContent=s?`${s.name.trim().split(/\s+/).slice(-1)[0]} • ${s.className}`:'Đăng nhập'}
+loginBtn.onclick=()=>modal.classList.add('open');document.getElementById('closeLogin').onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
+form.onsubmit=e=>{e.preventDefault();const r={time:new Date().toISOString(),name:studentName.value.trim(),className:studentClass.value.trim(),code:studentCode.value.trim()};localStorage.setItem('sua-taho-current-student-v1',JSON.stringify(r));const h=JSON.parse(localStorage.getItem('sua-taho-login-history-v1')||'[]');h.push(r);localStorage.setItem('sua-taho-login-history-v1',JSON.stringify(h));refreshLogin();modal.classList.remove('open')};refreshLogin();
 </script>
-</body>
-</html>
+</body></html>
