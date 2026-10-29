@@ -1,1 +1,136 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff8fd"><title>Lớp học Sứa Taho</title><link rel="stylesheet" href="style.css"></head><body><header class="topbar"><button class="brand" data-view="home"><img src="/public/site/images/jelly.webp" alt=""><span><strong>Lớp học Sứa Taho</strong><small>Học vui • Chơi thông minh</small></span></button><button id="loginBtn" class="login-btn"><span class="login-icon"></span><span id="loginBtnText">Đăng nhập</span></button></header><section class="hero"><div class="hero-inner"><img class="banner" src="/public/site/images/title-hq.webp" alt="Học cùng Sứa Taho"><p class="intro">Kho trò chơi học tập dành cho lớp học. Chọn môn hoặc vào Kho game để bắt đầu.</p><div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Tìm tên game..." autocomplete="off"></div><nav class="main-nav"><button class="nav-item active" data-view="home"><span class="menu-icon home-icon"></span><span>Trang chủ</span></button><button class="nav-item" data-view="games"><span class="menu-icon games-icon"></span><span>Kho game</span></button><button class="nav-item" data-view="math"><span class="menu-icon math-icon"></span><span>Toán</span></button><button class="nav-item" data-view="viet"><span class="menu-icon viet-icon"></span><span>Tiếng Việt</span></button></nav></div></section><main id="libraryView" class="library-view" hidden><div class="section-head"><div><span class="eyebrow" id="sectionEyebrow">KHO GAME</span><h2 id="sectionTitle">Kho game</h2><p id="sectionDesc">Các trò chơi sẽ được cập nhật tại đây.</p></div><span class="game-count" id="gameCount">0 game</span></div><div id="gameGrid" class="game-grid"></div><div id="emptyState" class="empty-state"><img src="/public/site/images/jelly.webp" alt=""><h3>Chưa có trò chơi</h3><p>Sứa Taho đang chuẩn bị thêm trò chơi mới.</p></div></main><div class="floating-jelly"><div class="speech" id="speech">Sứa Taho ở đây nè!</div><button id="jellyBtn" class="jelly-button"><img id="jellyImage" src="/public/site/images/jelly.webp" alt="Sứa Taho"></button></div><div class="modal" id="loginModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="closeLoginModal">×</button><div class="modal-title"><span class="login-icon big"></span><div><span class="eyebrow">HỌC SINH</span><h2>Đăng nhập vào Lớp học Sứa Taho</h2></div></div><form id="loginForm"><label><span>Họ và tên <b>*</b></span><input id="studentName" required placeholder="Ví dụ: Nguyễn Minh Anh"></label><label><span>Lớp <b>*</b></span><input id="studentClass" required placeholder="Ví dụ: 3/2"></label><label><span>Mã học sinh / Số thứ tự</span><input id="studentCode" placeholder="Có thể để trống"></label><div class="form-note">Website không yêu cầu mật khẩu. Thông tin chỉ dùng để nhận diện học sinh trên thiết bị hiện tại.</div><button class="primary" type="submit">Đăng nhập</button></form><button id="logoutBtn" class="logout-btn" hidden>Đăng xuất tài khoản trên thiết bị này</button></div></div><script src="data/games.js"></script><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fff8fd">
+  <title>Lớp học Sứa Taho</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" data-view="home" aria-label="Trang chủ">
+      <span class="jelly-asset jelly-normal" aria-hidden="true"></span>
+      <span>
+        <strong>Lớp học Sứa Taho</strong>
+        <small>Học vui • Chơi thông minh</small>
+      </span>
+    </button>
+
+    <button id="loginBtn" class="login-btn">
+      <span class="icon-asset icon-admin" aria-hidden="true"></span>
+      <span id="loginBtnText">Đăng nhập</span>
+    </button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-glow hero-glow-a"></div>
+    <div class="hero-glow hero-glow-b"></div>
+
+    <div class="hero-inner">
+      <img class="banner" src="/public/site/images/title-hq.webp" alt="Học cùng Sứa Taho">
+
+      <p class="intro">
+        Kho trò chơi học tập dành cho lớp học. Chọn môn hoặc vào Kho game để bắt đầu.
+      </p>
+
+      <div class="search-box">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Tìm tên game..." autocomplete="off">
+      </div>
+
+      <nav class="main-nav" aria-label="Điều hướng">
+        <button class="nav-item active" data-view="home">
+          <span class="icon-asset icon-home" aria-hidden="true"></span>
+          <span>Trang chủ</span>
+        </button>
+
+        <button class="nav-item" data-view="games">
+          <span class="icon-asset icon-games" aria-hidden="true"></span>
+          <span>Kho game</span>
+        </button>
+
+        <button class="nav-item" data-view="math">
+          <span class="icon-asset icon-math" aria-hidden="true"></span>
+          <span>Toán</span>
+        </button>
+
+        <button class="nav-item" data-view="viet">
+          <span class="icon-asset icon-viet" aria-hidden="true"></span>
+          <span>Tiếng Việt</span>
+        </button>
+      </nav>
+    </div>
+  </section>
+
+  <main id="libraryView" class="library-view" hidden>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow" id="sectionEyebrow">KHO GAME</span>
+        <h2 id="sectionTitle">Kho game</h2>
+        <p id="sectionDesc">Các trò chơi sẽ được cập nhật tại đây.</p>
+      </div>
+      <span class="game-count" id="gameCount">0 game</span>
+    </div>
+
+    <div id="gameGrid" class="game-grid"></div>
+
+    <div id="emptyState" class="empty-state">
+      <span class="empty-jelly jelly-asset jelly-thinking" aria-hidden="true"></span>
+      <h3>Chưa có trò chơi</h3>
+      <p>Sứa Taho đang chuẩn bị thêm trò chơi mới.</p>
+    </div>
+  </main>
+
+  <div class="floating-jelly">
+    <div class="speech" id="speech">Sứa Taho ở đây nè!</div>
+    <button id="jellyBtn" class="jelly-button" aria-label="Sứa Taho">
+      <span id="jellyImage" class="jelly-asset jelly-normal" aria-label="Sứa Taho"></span>
+    </button>
+  </div>
+
+  <div class="modal" id="loginModal" aria-hidden="true">
+    <div class="modal-card login-card">
+      <button class="modal-close" id="closeLoginModal" aria-label="Đóng">×</button>
+
+      <div class="modal-title">
+        <span class="icon-asset icon-admin modal-admin" aria-hidden="true"></span>
+        <div>
+          <span class="eyebrow">HỌC SINH</span>
+          <h2>Đăng nhập vào Lớp học Sứa Taho</h2>
+        </div>
+      </div>
+
+      <form id="loginForm">
+        <label>
+          <span>Họ và tên <b>*</b></span>
+          <input id="studentName" required autocomplete="name" placeholder="Ví dụ: Nguyễn Minh Anh">
+        </label>
+
+        <label>
+          <span>Lớp <b>*</b></span>
+          <input id="studentClass" required placeholder="Ví dụ: 3/2">
+        </label>
+
+        <label>
+          <span>Mã học sinh / Số thứ tự</span>
+          <input id="studentCode" placeholder="Có thể để trống">
+        </label>
+
+        <div class="form-note">
+          Website không yêu cầu mật khẩu. Thông tin này chỉ dùng để nhận diện học sinh trên thiết bị hiện tại.
+        </div>
+
+        <button class="primary submit" type="submit">Đăng nhập</button>
+      </form>
+
+      <button id="logoutBtn" class="logout-btn" type="button" hidden>
+        Đăng xuất tài khoản trên thiết bị này
+      </button>
+    </div>
+  </div>
+
+  <script src="data/games.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
