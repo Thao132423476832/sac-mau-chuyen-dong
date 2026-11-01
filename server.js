@@ -39,7 +39,19 @@ app.get('/games/sac-mau/api/qr', async (req, res) => {
   const proto = String(req.headers['x-forwarded-proto'] || req.protocol || 'https')
     .split(',')[0]
     .trim();
-  const drawUrl = `${proto}://${req.get('host')}/games/sac-mau/draw`;
+
+  let drawUrl = `${proto}://${req.get('host')}/games/sac-mau/draw`;
+  const requested = String(req.query.target || '').trim();
+
+  if (requested) {
+    try {
+      const u = new URL(requested);
+      const allowedHost = u.hostname === 'op-hoc-sua-taho.netlify.app';
+      const allowedPath = u.pathname.startsWith('/games/sac-mau/draw');
+      if (u.protocol === 'https:' && allowedHost && allowedPath) drawUrl = u.toString();
+    } catch (_) {}
+  }
+
   const qr = await QRCode.toDataURL(drawUrl, { width: 420, margin: 1 });
   res.json({ drawUrl, qr });
 });
