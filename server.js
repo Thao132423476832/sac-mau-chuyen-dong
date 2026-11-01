@@ -17,6 +17,15 @@ const gameDir = path.join(__dirname, 'public', 'games', 'sac-mau');
 
 app.set('trust proxy', true);
 
+// Cho phép website tĩnh Netlify gọi API QR từ Render.
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 app.use(express.static(siteDir));
 app.get('/', (req, res) => res.sendFile(path.join(siteDir, 'index.html')));
 
