@@ -17,38 +17,28 @@ const gameDir = path.join(__dirname, 'public', 'games', 'sac-mau');
 
 app.set('trust proxy', true);
 
-// Trang chủ Lớp học Sứa Taho
 app.use(express.static(siteDir));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(siteDir, 'index.html'));
-});
+app.get('/', (req, res) => res.sendFile(path.join(siteDir, 'index.html')));
 
-// Game Sắc màu của em
 app.use('/games/sac-mau', express.static(gameDir, { index: false }));
-app.get('/games/sac-mau', (req, res) => {
-  res.sendFile(path.join(gameDir, 'tv.html'));
-});
-app.get('/games/sac-mau/tv', (req, res) => {
-  res.sendFile(path.join(gameDir, 'tv.html'));
-});
-app.get('/games/sac-mau/draw', (req, res) => {
-  res.sendFile(path.join(gameDir, 'draw.html'));
-});
+app.get('/games/sac-mau', (req, res) => res.sendFile(path.join(gameDir, 'tv.html')));
+app.get('/games/sac-mau/tv', (req, res) => res.sendFile(path.join(gameDir, 'tv.html')));
+app.get('/games/sac-mau/draw', (req, res) => res.sendFile(path.join(gameDir, 'draw.html')));
 
 app.get('/games/sac-mau/api/qr', async (req, res) => {
-  const proto = String(req.headers['x-forwarded-proto'] || req.protocol || 'https')
-    .split(',')[0]
-    .trim();
-
+  const proto = String(req.headers['x-forwarded-proto'] || req.protocol || 'https').split(',')[0].trim();
   let drawUrl = `${proto}://${req.get('host')}/games/sac-mau/draw`;
   const requested = String(req.query.target || '').trim();
 
   if (requested) {
     try {
       const u = new URL(requested);
-      const allowedHost = u.hostname === 'op-hoc-sua-taho.netlify.app';
+      const allowedHosts = new Set([
+        'op-hoc-sua-taho.netlify.app',
+        'superlative-raindrop-f7eb6d.netlify.app'
+      ]);
       const allowedPath = u.pathname.startsWith('/games/sac-mau/draw');
-      if (u.protocol === 'https:' && allowedHost && allowedPath) drawUrl = u.toString();
+      if (u.protocol === 'https:' && allowedHosts.has(u.hostname) && allowedPath) drawUrl = u.toString();
     } catch (_) {}
   }
 
@@ -56,9 +46,7 @@ app.get('/games/sac-mau/api/qr', async (req, res) => {
   res.json({ drawUrl, qr });
 });
 
-app.get('/health', (req, res) => {
-  res.json({ ok: true });
-});
+app.get('/health', (req, res) => res.json({ ok: true }));
 
 io.on('connection', (socket) => {
   socket.on('tv:join', () => socket.join('tv'));
