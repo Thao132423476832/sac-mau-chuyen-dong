@@ -1,0 +1,8 @@
+SẮC MÀU CỦA EM – V8.6
+- Apple Pencil / ngón tay / chuột
+- Màu trắng trong bảng màu
+- QR nhỏ khoảng 105 px
+- Không lật ngang hình vẽ/chữ khi đổi hướng
+- Nhiều iPad/điện thoại gửi đồng thời lên một TV
+- 4 thế giới: Đại dương / Khu rừng / Thành phố / Vũ trụ
+- 5 kiểu chuyển động: Tự động / Cá bơi / Chim bay / Đi / Bay
