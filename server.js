@@ -14,6 +14,7 @@ const io = new Server(server, {
 const PORT = Number(process.env.PORT) || 3000;
 const siteDir = path.join(__dirname, 'public', 'site');
 const gameDir = path.join(__dirname, 'public', 'games', 'sac-mau');
+const goiTenDir = path.join(__dirname, 'public', 'games', 'goi-ten');
 
 app.set('trust proxy', true);
 
@@ -33,6 +34,10 @@ app.use('/games/sac-mau', express.static(gameDir, { index: false }));
 app.get('/games/sac-mau', (req, res) => res.sendFile(path.join(gameDir, 'tv.html')));
 app.get('/games/sac-mau/tv', (req, res) => res.sendFile(path.join(gameDir, 'tv.html')));
 app.get('/games/sac-mau/draw', (req, res) => res.sendFile(path.join(gameDir, 'draw.html')));
+
+// Game Đường đua Gọi tên V12.
+app.use('/games/goi-ten', express.static(goiTenDir));
+app.get('/games/goi-ten', (req, res) => res.sendFile(path.join(goiTenDir, 'index.html')));
 
 app.get('/games/sac-mau/api/qr', async (req, res) => {
   const proto = String(req.headers['x-forwarded-proto'] || req.protocol || 'https').split(',')[0].trim();
