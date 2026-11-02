@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#6f36dc" />
+  <title>Đường đua Gọi tên – Sứa Taho V12</title>
+  <link id="gameFavicon" rel="icon" href="" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <section id="setupScreen" class="screen active">
+      <div class="setup-card glass">
+        <div class="brand-row">
+          <img src="" data-asset="gameIcon" class="brand-mascot game-brand-icon" alt="Icon game Đường đua Gọi tên">
+          <div>
+            <div class="eyebrow">BẠN SỨA TAHO</div>
+            <h1>Đường đua <span>Gọi tên</span></h1>
+            <p>Gọi tên học sinh ngẫu nhiên bằng một cuộc đua vui nhộn.</p>
+          </div>
+        </div>
+
+        <div class="import-grid excel-manual">
+          <button class="import-card excel" id="excelBtn" type="button">
+            <div class="excel-icon" aria-hidden="true">X</div>
+            <div><strong>Nhập file Excel</strong><small>Chọn .xlsx, .xls hoặc .csv trên máy</small></div>
+          </button>
+          <button class="import-card manual" id="manualBtn" type="button">
+            <div class="import-icon pencil-icon">✎</div>
+            <div><strong>Nhập thủ công</strong><small>Tự nhập danh sách, tối đa 50 học sinh</small></div>
+          </button>
+        </div>
+        <input id="excelFileInput" type="file" accept=".xlsx,.xls,.csv,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" hidden>
+        <div id="importHint" class="import-hint">Không có file Excel nào được nhúng sẵn. Mỗi giáo viên tự chọn file của mình.</div>
+
+        <div class="call-time-card">
+          <div class="call-time-head">
+            <div>⏱ <strong>Thời gian trước khi gọi</strong></div>
+            <div class="call-time-value"><span id="callSecondsValue">3</span> giây</div>
+          </div>
+          <input id="callSeconds" type="range" min="1" max="5" step="1" value="3" aria-label="Thời gian trước khi gọi, từ 1 đến 5 giây">
+          <div class="call-time-scale"><span>1 giây</span><span>3 giây</span><span>5 giây</span></div>
+        </div>
+
+        <div class="list-summary">
+          <div>
+            <span>Danh sách hiện tại</span>
+            <strong id="studentCount">0 học sinh</strong>
+          </div>
+          <button id="editListBtn" class="mini-btn">✎ Chỉnh danh sách</button>
+        </div>
+        <div id="previewNames" class="preview-names empty">Chưa có danh sách học sinh.</div>
+
+        <div class="setup-actions">
+          <button id="saveListBtn" class="confirm-list-btn hidden" type="button">✓ LƯU DANH SÁCH</button>
+          <button id="startBtn" class="image-action disabled" disabled aria-label="Bắt đầu">
+            <img src="" data-asset="btnStart" alt="Bắt đầu">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="raceScreen" class="screen">
+      <div id="raceStage" class="race-stage">
+        <div class="top-hud">
+          <button id="backBtn" class="hud-chip">← Danh sách</button>
+          <div class="hud-title">🏁 Đường đua Gọi tên</div>
+          <div class="hud-chip"><span id="remainCount">0</span> tên còn lại</div>
+        </div>
+
+        <div class="road-zone" id="roadZone">
+          <div id="runnerLayer" class="runner-layer"></div>
+          <div id="ufoTarget" class="ufo-target hidden">
+            <img src="" data-asset="ufoBeam" alt="UFO">
+          </div>
+        </div>
+
+        <div class="bottom-controls">
+          <button id="raceStartBtn" class="image-action compact"><img src="" data-asset="btnStart" alt="Bắt đầu"></button>
+          <button id="resetBtn" class="image-action compact"><img src="" data-asset="btnReset" alt="Đặt lại danh sách"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="manualModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card manual-panel">
+      <button class="close-btn" data-close="manualModal">×</button>
+      <div class="panel-title"><span class="pencil-badge">✎</span> Nhập tên học sinh thủ công</div>
+
+      <label class="class-row">Lớp:
+        <input id="className" placeholder="Ví dụ: 3/2" maxlength="20">
+      </label>
+
+      <div class="table-head"><span>STT</span><span>Tên học sinh</span><span></span></div>
+      <div id="manualRows" class="manual-rows"></div>
+
+      <button id="addRowBtn" class="add-row">＋ Thêm học sinh</button>
+
+      <div class="manual-actions">
+        <button id="saveManualBtn" class="save-btn">✓ Lưu danh sách</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="winnerModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="winner-art-wrap">
+      <img class="winner-board-art" src="" data-asset="winnerBoard" alt="Chúc mừng - Sứa Taho">
+      <div id="winnerName" class="winner-name-overlay">Tên học sinh</div>
+      <div class="winner-actions-art">
+        <button id="continueBtn" class="image-action winner-art-btn" aria-label="Tiếp tục">
+          <img src="" data-asset="btnContinue" alt="Tiếp tục">
+        </button>
+        <button id="recallBtn" class="image-action winner-art-btn" aria-label="Gọi lại">
+          <img src="" data-asset="btnRecall" alt="Gọi lại">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="assets-a.js"></script>
+  <script src="assets-b.js"></script>
+  <script src="assets-c.js"></script>
+  <script src="assets-d.js"></script>
+  <script>
+    document.documentElement.style.setProperty('--school-road',`url("${SUA_ASSETS.schoolRoad}")`);
+    document.querySelectorAll('[data-asset]').forEach(el=>{const v=SUA_ASSETS[el.dataset.asset]; if(v) el.src=v;});
+    const fav=document.getElementById('gameFavicon'); if(fav) fav.href=SUA_ASSETS.favicon;
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'"></script>
+  <script src="app.js"></script>
+</body>
+</html>
